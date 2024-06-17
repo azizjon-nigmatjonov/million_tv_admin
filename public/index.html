@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>million.svg">
+  <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
+  <title>Milliontv tv</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f6f6f6;
+      border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cdcdcd;
+      border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #747474;
+    }
+
+    ::-webkit-scrollbar-corner {
+      background: #f6f6f6;
+    }
+
+    .first-loading-wrp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #0067F4;
+      height: 100%
+    }
+
+    .first-loading-wrp h1 {
+      font-family: "Allerta Stencil";
+      color: #ffffff;
+      font-size: 64px;
+      margin-bottom: 150px;
+    }
+
+
+    /* .dot {
+      animation: antRotate 1.2s infinite linear;
+      transform: rotate(45deg);
+      position: relative;
+      display: inline-block;
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+      box-sizing: border-box
+    }
+
+    .dot i {
+      width: 14px;
+      height: 14px;
+      position: absolute;
+      display: block;
+      background-color: #1890ff;
+      border-radius: 100%;
+      transform: scale(.75);
+      transform-origin: 50% 50%;
+      opacity: .3;
+      animation: antSpinMove 1s infinite linear alternate
+    }
+
+    .dot i:nth-child(1) {
+      top: 0;
+      left: 0
+    }
+
+    .dot i:nth-child(2) {
+      top: 0;
+      right: 0;
+      -webkit-animation-delay: .4s;
+      animation-delay: .4s
+    }
+
+    .dot i:nth-child(3) {
+      right: 0;
+      bottom: 0;
+      -webkit-animation-delay: .8s;
+      animation-delay: .8s
+    }
+
+    .dot i:nth-child(4) {
+      bottom: 0;
+      left: 0;
+      -webkit-animation-delay: 1.2s;
+      animation-delay: 1.2s
+    }
+
+    @keyframes antRotate {
+      to {
+        -webkit-transform: rotate(405deg);
+        transform: rotate(405deg)
+      }
+    }
+
+    @-webkit-keyframes antRotate {
+      to {
+        -webkit-transform: rotate(405deg);
+        transform: rotate(405deg)
+      }
+    }
+
+    @keyframes antSpinMove {
+      to {
+        opacity: 1
+      }
+    }
+
+    @-webkit-keyframes antSpinMove {
+      to {
+        opacity: 1
+      }
+    } */
+
+    .fancy-spinner {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      width: 10rem;
+      height: 10rem;
+      margin-bottom: 100px;
+    }
+
+    .fancy-spinner div {
+      position: absolute;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+    }
+
+    .fancy-spinner div.ring {
+      border-width: 0.5rem;
+      border-style: solid;
+      border-color: transparent;
+      -webkit-animation: 2s fancy infinite alternate;
+      animation: 2s fancy infinite alternate;
+    }
+
+    .fancy-spinner div.ring:nth-child(1) {
+      border-left-color: #ffffff;
+      border-right-color: #ffffff;
+    }
+
+    .fancy-spinner div.ring:nth-child(2) {
+      border-top-color: #ffffff;
+      border-bottom-color: #ffffff;
+      -webkit-animation-delay: 1s;
+      animation-delay: 1s;
+    }
+
+    .fancy-spinner div.dot {
+      width: 1rem;
+      height: 1rem;
+      background: #ffffff;
+    }
+
+    @-webkit-keyframes fancy {
+      to {
+        -webkit-transform: rotate(360deg) scale(0.5);
+        transform: rotate(360deg) scale(0.5);
+      }
+    }
+
+    @keyframes fancy {
+      to {
+        -webkit-transform: rotate(360deg) scale(0.5);
+        transform: rotate(360deg) scale(0.5);
+      }
+    }
+
+    .footertitle {
+      font-family: "Allerta Stencil";
+      font-size: 18px;
+      color: #ffffff;
+    }
+  </style>
+  <!-- require cdn assets css -->
+  <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" />
+    <% } %>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but vue-antd-pro doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app">
+    <div class="first-loading-wrp">
+      <h1>Milliontv tv</h1>
+      <div class="fancy-spinner">
+        <div class="ring"></div>
+        <div class="dot"></div>
+      </div>
+      <!-- <div class="loading-wrp">
+        <span class="dot dot-spin"><i></i><i></i><i></i><i></i></span>
+        
+      </div> -->
+      <div class="footertitle"> &copy; UDEVS</div>
+    </div>
+  </div>
+  <!-- require cdn assets js -->
+  <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+    <% } %>
+      <!-- built files will be auto injected -->
+</body>
+
+</html>

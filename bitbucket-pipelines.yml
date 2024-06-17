@@ -1,0 +1,24 @@
+image: docker:19.03.8
+pipelines:
+  branches:
+    master:
+    - step:
+        name: Deploy to Prod
+        size: 2x
+        services:
+        - docker
+        script:
+        - apk update && apk add make && apk add openssh
+        - docker login $REGISTRY --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+        - make build-image TAG=$BITBUCKET_BUILD_NUMBER REGISTRY=$REGISTRY
+        - make push-image  TAG=$BITBUCKET_BUILD_NUMBER REGISTRY=$REGISTRY
+        - source .build_info
+        - ssh $VOXE_PROD_USER@$VOXE_PROD_HOST 'docker service update --with-registry-auth
+          --image '$REGISTRY'/'$APP':'$BITBUCKET_BUILD_NUMBER' '$APP''
+
+definitions:
+  services:
+    docker:
+      memory: 7168
+
+
